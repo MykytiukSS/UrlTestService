@@ -51,15 +51,16 @@ public class TestServiceURL {
 				int x = connection.getResponseCode();
 				if (x == 200) {
 					test = true;
+					temp.add(string);
 				}
 
 			} catch (IOException e) {
 
 				continue;
 			}
-			if (test = true) {
-				temp.add(string);
-			}
+//			if (test = true) {
+//				temp.add(string);
+//			}
 
 		}
 
