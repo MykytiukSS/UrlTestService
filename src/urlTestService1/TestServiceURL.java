@@ -1,6 +1,11 @@
 package urlTestService1;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
 import java.net.URL;
@@ -8,6 +13,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestServiceURL {
+	
+	public List<String>listUrl(File file) throws IOException{
+		List<String>list = new ArrayList<>();
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			for(;;) {
+				String string =reader.readLine();
+				if (string ==null) {
+					break;
+				}else {
+					list.add(string);
+				}
+				
+			}
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+		
+	}
+	
+	
+	
 //   This method returns list of correct URLs, ignoring incorrect URLs
 	public List<String> testedURL(List<String> listUrl) throws IOException {
 		List<String> temp = new ArrayList<>();
@@ -21,7 +53,7 @@ public class TestServiceURL {
 					test = true;
 				}
 
-			} catch (Exception e) {
+			} catch (IOException e) {
 
 				continue;
 			}
@@ -48,7 +80,7 @@ public class TestServiceURL {
 					test = true;
 				}
 
-			} catch (Exception e) {
+			} catch (IOException e) {
                  tempIncorrect.add(string);
                  continue;
 				
